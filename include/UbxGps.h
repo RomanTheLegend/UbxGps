@@ -60,6 +60,11 @@ public:
     serial.begin(baudrate);
   }
 
+  void begin(unsigned long baudrate, long speed, uint16_t tx, uint16_t rx)
+  {
+    serial.begin(baudrate, speed, tx, rx);
+  }
+
   boolean ready()
   {
     unsigned char p = carriagePosition;
@@ -103,7 +108,7 @@ public:
         // Carriage is at the second checksum byte, but only the first byte of checksum read, check if it equals to
         // ours.
         else if (p == (size + 3))
-        {
+        { 
           // Reset if not.
           if (c != checksum[0])
           {
