@@ -377,9 +377,9 @@ public:
             restoreDefaults();
         }
 
-        logSerial.print("Current Baudrate determined at ");
-        logSerial.print(findCurrentBaudrate(rx));
-        logSerial.println(" bps...");
+        // logSerial.print("Current Baudrate determined at ");
+        // logSerial.print(findCurrentBaudrate(rx));
+        // logSerial.println(" bps...");
         
         // Switch the GPS receiver serial configuration to the default baudrate.
         if (gpsPossibleBaudrates[sizeof(gpsPossibleBaudrates) / sizeof(*gpsPossibleBaudrates) - 1] != GPS_DEFAULT_BAUDRATE)
