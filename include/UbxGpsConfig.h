@@ -212,6 +212,26 @@ private:
         sendPacket(packet, sizeof(packet));
     }
 
+    // Send a packet to the GPS receiver to run in Max Performance mode.
+    void setMaxPerformanceMode()
+    {
+        // CFG-PRT packet.
+        byte packet[] = {
+            0xB5, // sync char 1
+            0x62, // sync char 2
+            0x06, // class
+            0x11, // id
+            0x02, // length
+            0x00, // length
+            0x08, // payload
+            0x00, // payload
+            0x21, // CK_A
+            0x91, // CK_B
+        };
+
+        sendPacket(packet, sizeof(packet));
+    }
+
     // Send a packet to the GPS receiver to change the frequency to 100 ms.
     void changeFrequency()
     {
@@ -438,6 +458,9 @@ public:
         logSerial.println("Disabling unnecessary channels...");
         disableUnnecessaryChannels();
 
+        logSerial.println("Switching to Max Performance mode...");
+        setMaxPerformanceMode();
+        
         // Enable NAV-PVT messages.
         logSerial.println("Enabling NAV-PVT messages...");
         enableNavPvt();
